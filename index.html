@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <title>Quiz Game</title>
 </head>
 <body>
@@ -14,14 +15,16 @@
     </div>
   </header>
   <main>
+
     <!-- START SCREEN -->
     <div class="start-screen">
       <h1>Coding Quiz Challenge</h1>
       <p>Something here about starting the quiz</p>
-      <button>Start Quiz</button>
+      <button class="start-button">Start Quiz</button>
     </div>
+
     <!-- QUESTION TEMPLATE -->
-    <div class="question">
+    <div class="question-screen">
       <p>Question 1: What is HTML?</p>
       <button class="answer-button">Answer 1</button>
       <button class="answer-button">Answer 2</button>
@@ -29,14 +32,16 @@
       <button class="answer-button">Answer 4</button>
       <button class="submit-button">Submit</button>
     </div>
+
     <!-- END SCREEN -->
     <div class="end-screen">
       <h2>All done.</h2>
       <p>Your final score is </p>
       <p>Enter initials: </p>
-      <input type="initials">
-      <button>Submit</button>
+      <input type="initials" class="initials-input">
+      <button class="submit-button">Submit</button>
     </div>
+
     <!-- HIGHSCORE SCREEN -->
     <div class="highscore-screen">
       <h2>Highscores</h2>
@@ -44,9 +49,10 @@
         <li class="highscoreLog">Highscore 1</li>
       </ol>
       <button>Go Back</button>
-      <button>Clear Highscores</button>
+      <button class="clear-highscores-button">Clear Highscores</button>
     </div>
-  </main>
 
+  </main>
+  <script src='./assets/js/script.js'></script>
 </body>
 </html>
