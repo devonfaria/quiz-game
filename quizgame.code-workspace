@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../UNCC-VIRT-FSF-FT-02-2022-U-LOL/04-Web-APIs/02-Homework"
+		},
+		{
+			"path": "../../UNCC-VIRT-FSF-FT-02-2022-U-LOL/04-Web-APIs/05-Sandbox"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "quiz-game"
+	}
+}
