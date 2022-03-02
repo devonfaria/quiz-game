@@ -5,7 +5,8 @@ var endScreen = document.querySelector('.end-screen');
 var highscoreScreen = document.querySelector('.highscore-screen');
 var startButton = document.querySelector('.start-button');
 var answerButton = document.querySelector('.answer-button');
-var submitButton = document.querySelector('.submit-button');
+var answerSubmitButton = document.querySelector('.answer-submit-button');
+var initialsSubmitButton = document.querySelector('.initials-submit-button');
 var clearHighscoresButton = document.querySelector('.clear-highscores-button');
 var initialsInput = document.querySelector('.initials-input');
 
@@ -38,3 +39,14 @@ var showHighscores = function () {
   endScreen.style.display = 'none';
   highscoreScreen.style.display = 'block';
 }
+
+// GAME FUNCTIONALITY
+
+
+// BUTTON FUNCTIONALITY
+startButton.addEventListener('click', showQuestion);
+answerButton.addEventListener('click', );
+answerSubmitButton.addEventListener('click', );
+initialsSubmitButton.addEventListener('click', );
+submitButton.addEventListener('click', );
+clearHighscoresButton.addEventListener('click', );
