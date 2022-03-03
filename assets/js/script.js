@@ -37,7 +37,7 @@ var showStart = function () {
   endScreen.style.display = 'none';
   highscoreScreen.style.display = 'none';
 };
-// showStart();
+showStart();
 // Show question screen
 var showQuestion = function () {
   startScreen.style.display = 'none';
@@ -52,6 +52,7 @@ var showEnd = function () {
   endScreen.style.display = 'block';
   highscoreScreen.style.display = 'none';
   timeEl.style.display = 'none';
+  document.querySelector('.final-score').innerHTML = `Your final score is ${score}.`;
 };
 // Show highscores screen
 var showHighscores = function () {
@@ -79,7 +80,6 @@ var checkAnswer = function (event) {
   console.log(count);
   if (count === 10) {
     showEnd();
-    document.querySelector('.final-score').innerHTML = `Your final score is ${score}.`;
     return;
   };
   if ((questions[0].correct) == (event.target.innerHTML)) {
@@ -105,7 +105,7 @@ function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left";
-    if(secondsLeft === 0) {
+    if(secondsLeft <= 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
       // Calls function to create and append image
@@ -130,9 +130,9 @@ var showScore = function () {
   var pullScore = JSON.parse(localStorage.getItem("finalScore"));
   document.querySelector('.highscore-list').appendChild('li');
   document.li.innerHTML = `${finalScore.initials}: score ${finalScore.score}`;
-  // document.querySelector('.highscoreLog').innerHTML = `${finalScore.initials}: score ${finalScore.score}`;
 };
-// showScore();
+
+
 // QUESTION INFO
 var questions = [
   {
@@ -244,11 +244,10 @@ startButton.addEventListener('click', function () {
   renderQuestion();
   setTime();
 });
-
 initialsSubmitButton.addEventListener('click', storesScore);
 goBackButton.addEventListener('click', showStart);
 headerLink.addEventListener('click', showHighscores);
-// clearHighscoresButton.addEventListener('click', );
+
 
 // ANSWER BUTTONS
 document.querySelector('.answer-button1').addEventListener('click', checkAnswer);

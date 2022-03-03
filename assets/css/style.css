@@ -1,23 +1,47 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 header {
   height: 100px;
-  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-scores {
-  padding: 5px;
-  background-color: aquamarine;
-  color: grey;
+  padding: 20px;
+  background-color: purple;
+  color: white;
 }
 
 button {
   padding: 5px;
   background-color: purple;
   color: white;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 main div {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+.timer {
+  padding: 20px;
+  color: purple;
+}
+
+.question-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-screen button{
+  display: block;
+  width: fit-content;
+}
+
+.question-show {
+  font-size: 25px;
 }
