@@ -153,7 +153,7 @@ var showStart = function () {
   endScreen.style.display = 'none';
   highscoreScreen.style.display = 'none';
 };
-showStart();
+
 // Show question screen
 var showQuestion = function () {
   startScreen.style.display = 'none';
@@ -240,7 +240,8 @@ var storesScore = function () {
 // RETRIEVING INFORMATION IN LOCAL STORAGE
 var showScore = function () {
   var pullScore = JSON.parse(localStorage.getItem("finalScore"));
-  if (score >= finalScore.score) {
+  console.log(score, finalScore.score);
+  if (score > finalScore.score) {
     finalScore.initials = initialsInput.value;
     finalScore.score = score;
     window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
@@ -251,110 +252,11 @@ var showScore = function () {
   }
 }
 
-
-// // QUESTION INFO
-// var questions = [
-//   {
-//     text: "What is the method that adds values to the end of an array?",
-//     possible: [
-//       ".push",
-//       ".assign",
-//       ".concat",
-//       ".end",
-//     ],
-//     correct: '.push',
-//   },
-//   {
-//     text: "What language is predominantly used to style and animate elements of a webpage?",
-//     possible: [
-//       "C++",
-//       "Javascript",
-//       "Ruby",
-//       "CSS",
-//     ],
-//     correct: "CSS",
-//   },
-//   {
-//     text: "What is considered the most widely used browser for coding debugging?",
-//     possible: [
-//       "Mozilla Firefox",
-//       "Safari",
-//       "Microsoft Edge",
-//       "Google Chrome",
-//     ],
-//     correct: "Google Chrome",
-//   },
-//   {
-//     text: "What is the terminal command for adding a directory?",
-//     possible: [
-//       "git push",
-//       "git clone",
-//       "mkdir",
-//       "git pull upstream main",
-//     ],
-//     correct: "mkdir",
-//   },
-//   {
-//     text: "What is a commonly used database of reactive CSS designs and stylings?",
-//     possible: [
-//       "GitHub",
-//       "Bootstrap",
-//       "Google Designs",
-//       "Fullstack Slack",
-//     ],
-//     correct: "Bootstrap",
-//   },
-//   {
-//     text: "What is the common name reference for Modern Javascript?",
-//     possible: [
-//       "ES6",
-//       "ES2021",
-//       "ES2015",
-//       "Java",
-//     ],
-//     correct: "ES6",
-//   },
-//   {
-//     text: "What is the main difference between arrays and objects?",
-//     possible: [
-//       "Arrays are used in CSS, and objects are used in Javascript",
-//       "Arrays are comma deliniated, whereas objects are dash deliniated",
-//       "Arrays take in values alone, as where objects can take in arguments and values",
-//       "Arrays are limited in size, as where objects are unlimited",
-//     ],
-//     correct: "Arrays take in values alone, as where objects can take in arguments and values",
-//   },
-//   {
-//     text: "What are the usual details needed to run a loop function?",
-//     possible: [
-//       "declared variable, condition, incrementer",
-//       "width, height, and padding",
-//       "declared variable, incrementer, position, key",
-//       "event, declared variable, value",
-//     ],
-//     correct: "declared variable, condition, incrementer",
-//   },
-//   {
-//     text: "What is a commonly used method for running a function over a set of variables?",
-//     possible: [
-//       "Init Function",
-//       "If Method",
-//       "Loop function",
-//       "Concat Function",
-//     ],
-//     correct: "Loop function",
-//   },
-//   {
-//     text: "When you submit a directory to GitHub, what three terminal calls do you use?",
-//     possible: [
-//       "git pull upstream main, git add -A, git commit",
-//       "~, git add -A, git push",
-//       "cd, mkdir, git push",
-//       'git add -A, git commit -m "message", git push',
-//     ],
-//     correct: 'git add -A, git commit -m "message", git push',
-//   }
-// ];
+// CLEARING LOCAL STORAGE
+var clearStorage = function () {
+  window.localStorage.clear();
+  document.querySelector('.highscoreLog').innerHTML = '';
+}
 
 // BUTTON FUNCTIONALITY
 // Start button
@@ -368,7 +270,7 @@ initialsSubmitButton.addEventListener('click', function () {
 });
 goBackButton.addEventListener('click', init);
 headerLink.addEventListener('click', showHighscores);
-
+clearHighscoresButton.addEventListener('click', clearStorage);
 
 // ANSWER BUTTONS
 document.querySelector('.answer-button1').addEventListener('click', checkAnswer);
