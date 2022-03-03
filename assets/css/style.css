@@ -33,13 +33,18 @@ button {
   padding: 10px;
   background-color: purple;
   color: white;
-  font-size: 20px;
+  font-size: 25px;
   border-radius: 5px;
 }
 
 main div {
   justify-content: center;
   text-align: center;
+}
+
+.start-screen {
+  width: 60%;
+  margin: 0 20%;
 }
 
 .timer {
@@ -65,7 +70,8 @@ main div {
 }
 
 p {
-  font-size: 20px;;
+  font-size: 25px;
+  line-height: 1.7;
 }
 
 .initials-input {
