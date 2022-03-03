@@ -22,19 +22,19 @@ Then you will be presented with your final score, on the end screen, and you can
 The following layout is what you can expect to see on your browser.
 
 This is the loading screen before you begin the quiz.
-![alt text](./assets/images/Quiz-Game-start.png)
+![alt text](./assets/images/Quiz-Game-start2.png)
 
 This is the screen with a question. All answers are clickable and the timer will run in the upper right hand corner. 
 
-![alt text](./assets/images/Quiz-Game-question.png)
+![alt text](./assets/images/Quiz-Game-question2.png)
 
 Once the timer reaches zero or the questions are completed, the game will flip to this screen.
 
-![alt text](./assets/images/Quiz-Game-end.png)
+![alt text](./assets/images/Quiz-Game-end2.png)
 
 Once you submit your initials on the end screen, then your will save them to your localStorage. This page displays the last score. 
 
-![alt text](./assets/images/Quiz-Game-highscores-empty.png)
+![alt text](./assets/images/Quiz-Game-highscore2.png)
 
 ## Support
 
