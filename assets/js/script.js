@@ -17,7 +17,7 @@ var clearHighscoresButton = document.querySelector('.clear-highscores-button');
 var initialsInput = document.querySelector('.initials-input');
 
 // STARTING CONDITIONS
-var cursor = 0;
+var questions = [];
 var correct = 0;
 var score = 0;
 var count = 0;
@@ -27,6 +27,122 @@ var finalScore = {
   initials: '',
   score: score,
 }
+var questionSpace = document.querySelector('.question-show').innerHTML;
+
+// INITIATE FUNCTION
+var init = function () {
+  showStart();
+  correct = 0;
+  score = 0;
+  count = 0;
+  secondsLeft = 60;
+  
+  finalScore = {
+    initials: '',
+    score: score,}
+  questions = [
+      {
+        text: "What is the method that adds values to the end of an array?",
+        possible: [
+          ".push",
+          ".assign",
+          ".concat",
+          ".end",
+        ],
+        correct: '.push',
+      },
+      {
+        text: "What language is predominantly used to style and animate elements of a webpage?",
+        possible: [
+          "C++",
+          "Javascript",
+          "Ruby",
+          "CSS",
+        ],
+        correct: "CSS",
+      },
+      {
+        text: "What is considered the most widely used browser for coding debugging?",
+        possible: [
+          "Mozilla Firefox",
+          "Safari",
+          "Microsoft Edge",
+          "Google Chrome",
+        ],
+        correct: "Google Chrome",
+      },
+      {
+        text: "What is the terminal command for adding a directory?",
+        possible: [
+          "git push",
+          "git clone",
+          "mkdir",
+          "git pull upstream main",
+        ],
+        correct: "mkdir",
+      },
+      {
+        text: "What is a commonly used database of reactive CSS designs and stylings?",
+        possible: [
+          "GitHub",
+          "Bootstrap",
+          "Google Designs",
+          "Fullstack Slack",
+        ],
+        correct: "Bootstrap",
+      },
+      {
+        text: "What is the common name reference for Modern Javascript?",
+        possible: [
+          "ES6",
+          "ES2021",
+          "ES2015",
+          "Java",
+        ],
+        correct: "ES6",
+      },
+      {
+        text: "What is the main difference between arrays and objects?",
+        possible: [
+          "Arrays are used in CSS, and objects are used in Javascript",
+          "Arrays are comma deliniated, whereas objects are dash deliniated",
+          "Arrays take in values alone, as where objects can take in arguments and values",
+          "Arrays are limited in size, as where objects are unlimited",
+        ],
+        correct: "Arrays take in values alone, as where objects can take in arguments and values",
+      },
+      {
+        text: "What are the usual details needed to run a loop function?",
+        possible: [
+          "declared variable, condition, incrementer",
+          "width, height, and padding",
+          "declared variable, incrementer, position, key",
+          "event, declared variable, value",
+        ],
+        correct: "declared variable, condition, incrementer",
+      },
+      {
+        text: "What is a commonly used method for running a function over a set of variables?",
+        possible: [
+          "Init Function",
+          "If Method",
+          "Loop function",
+          "Concat Function",
+        ],
+        correct: "Loop function",
+      },
+      {
+        text: "When you submit a directory to GitHub, what three terminal calls do you use?",
+        possible: [
+          "git pull upstream main, git add -A, git commit",
+          "~, git add -A, git push",
+          "cd, mkdir, git push",
+          'git add -A, git commit -m "message", git push',
+        ],
+        correct: 'git add -A, git commit -m "message", git push',
+      }
+    ]
+  };
 
 
 // DEFINING SCREEN CHANGE FUNCTIONS
@@ -136,109 +252,109 @@ var showScore = function () {
 }
 
 
-// QUESTION INFO
-var questions = [
-  {
-    text: "What is the method that adds values to the end of an array?",
-    possible: [
-      ".push",
-      ".assign",
-      ".concat",
-      ".end",
-    ],
-    correct: '.push',
-  },
-  {
-    text: "What language is predominantly used to style and animate elements of a webpage?",
-    possible: [
-      "C++",
-      "Javascript",
-      "Ruby",
-      "CSS",
-    ],
-    correct: "CSS",
-  },
-  {
-    text: "What is considered the most widely used browser for coding debugging?",
-    possible: [
-      "Mozilla Firefox",
-      "Safari",
-      "Microsoft Edge",
-      "Google Chrome",
-    ],
-    correct: "Google Chrome",
-  },
-  {
-    text: "What is the terminal command for adding a directory?",
-    possible: [
-      "git push",
-      "git clone",
-      "mkdir",
-      "git pull upstream main",
-    ],
-    correct: "mkdir",
-  },
-  {
-    text: "What is a commonly used database of reactive CSS designs and stylings?",
-    possible: [
-      "GitHub",
-      "Bootstrap",
-      "Google Designs",
-      "Fullstack Slack",
-    ],
-    correct: "Bootstrap",
-  },
-  {
-    text: "What is the common name reference for Modern Javascript?",
-    possible: [
-      "ES6",
-      "ES2021",
-      "ES2015",
-      "Java",
-    ],
-    correct: "ES6",
-  },
-  {
-    text: "What is the main difference between arrays and objects?",
-    possible: [
-      "Arrays are used in CSS, and objects are used in Javascript",
-      "Arrays are comma deliniated, whereas objects are dash deliniated",
-      "Arrays take in values alone, as where objects can take in arguments and values",
-      "Arrays are limited in size, as where objects are unlimited",
-    ],
-    correct: "Arrays take in values alone, as where objects can take in arguments and values",
-  },
-  {
-    text: "What are the usual details needed to run a loop function?",
-    possible: [
-      "declared variable, condition, incrementer",
-      "width, height, and padding",
-      "declared variable, incrementer, position, key",
-      "event, declared variable, value",
-    ],
-    correct: "declared variable, condition, incrementer",
-  },
-  {
-    text: "What is a commonly used method for running a function over a set of variables?",
-    possible: [
-      "Init Function",
-      "If Method",
-      "Loop function",
-      "Concat Function",
-    ],
-    correct: "Loop function",
-  },
-  {
-    text: "When you submit a directory to GitHub, what three terminal calls do you use?",
-    possible: [
-      "git pull upstream main, git add -A, git commit",
-      "~, git add -A, git push",
-      "cd, mkdir, git push",
-      'git add -A, git commit -m "message", git push',
-    ],
-    correct: 'git add -A, git commit -m "message", git push',
-  }
-];
+// // QUESTION INFO
+// var questions = [
+//   {
+//     text: "What is the method that adds values to the end of an array?",
+//     possible: [
+//       ".push",
+//       ".assign",
+//       ".concat",
+//       ".end",
+//     ],
+//     correct: '.push',
+//   },
+//   {
+//     text: "What language is predominantly used to style and animate elements of a webpage?",
+//     possible: [
+//       "C++",
+//       "Javascript",
+//       "Ruby",
+//       "CSS",
+//     ],
+//     correct: "CSS",
+//   },
+//   {
+//     text: "What is considered the most widely used browser for coding debugging?",
+//     possible: [
+//       "Mozilla Firefox",
+//       "Safari",
+//       "Microsoft Edge",
+//       "Google Chrome",
+//     ],
+//     correct: "Google Chrome",
+//   },
+//   {
+//     text: "What is the terminal command for adding a directory?",
+//     possible: [
+//       "git push",
+//       "git clone",
+//       "mkdir",
+//       "git pull upstream main",
+//     ],
+//     correct: "mkdir",
+//   },
+//   {
+//     text: "What is a commonly used database of reactive CSS designs and stylings?",
+//     possible: [
+//       "GitHub",
+//       "Bootstrap",
+//       "Google Designs",
+//       "Fullstack Slack",
+//     ],
+//     correct: "Bootstrap",
+//   },
+//   {
+//     text: "What is the common name reference for Modern Javascript?",
+//     possible: [
+//       "ES6",
+//       "ES2021",
+//       "ES2015",
+//       "Java",
+//     ],
+//     correct: "ES6",
+//   },
+//   {
+//     text: "What is the main difference between arrays and objects?",
+//     possible: [
+//       "Arrays are used in CSS, and objects are used in Javascript",
+//       "Arrays are comma deliniated, whereas objects are dash deliniated",
+//       "Arrays take in values alone, as where objects can take in arguments and values",
+//       "Arrays are limited in size, as where objects are unlimited",
+//     ],
+//     correct: "Arrays take in values alone, as where objects can take in arguments and values",
+//   },
+//   {
+//     text: "What are the usual details needed to run a loop function?",
+//     possible: [
+//       "declared variable, condition, incrementer",
+//       "width, height, and padding",
+//       "declared variable, incrementer, position, key",
+//       "event, declared variable, value",
+//     ],
+//     correct: "declared variable, condition, incrementer",
+//   },
+//   {
+//     text: "What is a commonly used method for running a function over a set of variables?",
+//     possible: [
+//       "Init Function",
+//       "If Method",
+//       "Loop function",
+//       "Concat Function",
+//     ],
+//     correct: "Loop function",
+//   },
+//   {
+//     text: "When you submit a directory to GitHub, what three terminal calls do you use?",
+//     possible: [
+//       "git pull upstream main, git add -A, git commit",
+//       "~, git add -A, git push",
+//       "cd, mkdir, git push",
+//       'git add -A, git commit -m "message", git push',
+//     ],
+//     correct: 'git add -A, git commit -m "message", git push',
+//   }
+// ];
 
 // BUTTON FUNCTIONALITY
 // Start button
@@ -250,7 +366,7 @@ startButton.addEventListener('click', function () {
 initialsSubmitButton.addEventListener('click', function () {
   showScore();
 });
-goBackButton.addEventListener('click', showStart);
+goBackButton.addEventListener('click', init);
 headerLink.addEventListener('click', showHighscores);
 
 
@@ -259,3 +375,5 @@ document.querySelector('.answer-button1').addEventListener('click', checkAnswer)
 document.querySelector('.answer-button2').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button4').addEventListener('click', checkAnswer);
+
+init();
