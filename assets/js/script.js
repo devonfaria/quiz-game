@@ -9,6 +9,7 @@ var answerButton2 = document.querySelector('.answer-button2');
 var answerButton3 = document.querySelector('.answer-button3');
 var answerButton4 = document.querySelector('.answer-button4');
 var timeEl = document.querySelector('.timer');
+var headerLink = document.querySelector('.header-scores');
 
 var initialsSubmitButton = document.querySelector('.initials-submit-button');
 var goBackButton = document.querySelector('.go-back-button');
@@ -50,6 +51,7 @@ var showEnd = function () {
   questionScreen.style.display = 'none';
   endScreen.style.display = 'block';
   highscoreScreen.style.display = 'none';
+  timeEl.style.display = 'none';
 };
 // Show highscores screen
 var showHighscores = function () {
@@ -240,10 +242,12 @@ var questions = [
 startButton.addEventListener('click', function () {
   showQuestion();
   renderQuestion();
+  setTime();
 });
 
 initialsSubmitButton.addEventListener('click', storesScore);
 goBackButton.addEventListener('click', showStart);
+headerLink.addEventListener('click', showHighscores);
 // clearHighscoresButton.addEventListener('click', );
 
 // ANSWER BUTTONS
@@ -251,5 +255,3 @@ document.querySelector('.answer-button1').addEventListener('click', checkAnswer)
 document.querySelector('.answer-button2').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button4').addEventListener('click', checkAnswer);
-
-setTime();

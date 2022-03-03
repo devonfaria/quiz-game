@@ -1,5 +1,3 @@
-# quiz-game
-
 # Devon Faria - Quiz Game
 
 [Link to working page](https://devonfaria.github.io/quiz-game/)
@@ -13,7 +11,7 @@
 
 ## Description
 
-Welcome to the quiz game I created! Once you click the start button, you will switch to a question page where you will be presented with a question and 4 possible answers. Clicked answers are compared against the correct answer, and your score will go up if you get it correct. Both correct and incorrect answers will load the next question until question 10. 
+Welcome to the quiz game I created! Once you click the start button, you will switch to a question page where you will be presented with a question and 4 possible answers. Clicked answers are compared against the correct answer. Your score will go up if you get it correct. Your score will remain the same and your seconds left will detract 10 seconds if you are incorrect. Both correct and incorrect answers will load the next question until question 10. 
 
 Then you will be presented with your final score, on the end screen, and you can input your initials and score to a highscore page.
 
