@@ -4,14 +4,16 @@ var questionScreen = document.querySelector('.question-screen');
 var endScreen = document.querySelector('.end-screen');
 var highscoreScreen = document.querySelector('.highscore-screen');
 var startButton = document.querySelector('.start-button');
-var answerButton = document.querySelector('.answer-button');
-var answerSubmitButton = document.querySelector('.answer-submit-button');
+var answerButton = document.querySelectorAll('.answer-button');
 var initialsSubmitButton = document.querySelector('.initials-submit-button');
+var goBackButton = document.querySelector('.go-back-button');
 var clearHighscoresButton = document.querySelector('.clear-highscores-button');
 var initialsInput = document.querySelector('.initials-input');
 
 // STARTING CONDITIONS
 var cursor = 0;
+var correct = 0;
+var questionSpace = document.querySelector('.question-show').innerHTML;
 
 // DEFINING SCREEN CHANGE FUNCTIONS
 // Show start screen
@@ -42,9 +44,32 @@ var showHighscores = function () {
   endScreen.style.display = 'none';
   highscoreScreen.style.display = 'block';
 };
-// DEFINING GAME FUNCTIONS
-var renderQuestion = function () {
 
+// DEFINING GAME FUNCTIONS
+// Rendering next question
+var renderQuestion = function () {
+  document.querySelector('.question-show').innerHTML = `${questions[0].text}`;
+  // for (var i = 0; i < 4; i++) {
+  document.querySelector('.answer1').innerHTML = `${questions[0].possible[0]}`;
+  document.querySelector('.answer2').innerHTML = `${questions[0].possible[1]}`;
+  document.querySelector('.answer3').innerHTML = `${questions[0].possible[2]}`;
+  document.querySelector('.answer4').innerHTML = `${questions[0].possible[3]}`;
+  questions.shift(); 
+};
+
+var checkAnswer = function () {
+  event.preventDefault();
+
+}
+
+// STORING INFORMATION IN LOCAL STORAGE
+var finalScore = {
+  initials: '',
+
+}
+
+var addFinalScore = function () {
+  event.preventDefault();
 }
 
 // QUESTION INFO
@@ -152,9 +177,38 @@ var questions = [
 ];
 
 // BUTTON FUNCTIONALITY
-startButton.addEventListener('click', showQuestion);
-answerButton.addEventListener('click', );
-answerSubmitButton.addEventListener('click', );
-initialsSubmitButton.addEventListener('click', );
-submitButton.addEventListener('click', );
-clearHighscoresButton.addEventListener('click', );
+// startButton.addEventListener('click', showQuestion);
+// answerButton.addEventListener('click', renderQuestion);
+// initialsSubmitButton.addEventListener('click', addFinalScore);
+// goBackButton.addEventListener('click', );
+// clearHighscoresButton.addEventListener('click', );
+
+
+// var checkAnswer = function () {
+//   event.preventDefault();
+//   if ((questions[i].correct) === ) {
+
+//   }
+
+
+// BUTTON CLASS FOR CHECKING CORRECT ANSWERS
+
+// var whatAnswer = function(event) {
+//   var answer = possible[]
+// }
+
+
+// LOOP FOR QUESTION LOADING
+for (var i = 0; i < 10; i++) {
+  // Logic for producing correct values
+console.log(questions[i].possible[0]);
+console.log(questions[i].correct);
+}
+
+document.querySelector('.answer4').addEventListener('click', renderQuestion);
+
+
+
+
+
+var answer
