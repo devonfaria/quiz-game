@@ -20,6 +20,7 @@ var correct = 0;
 var score = 0;
 var questionSpace = document.querySelector('.question-show').innerHTML;
 
+
 // DEFINING SCREEN CHANGE FUNCTIONS
 // Show start screen
 var showStart = function () {
@@ -28,6 +29,7 @@ var showStart = function () {
   endScreen.style.display = 'none';
   highscoreScreen.style.display = 'none';
 };
+showStart();
 // Show question screen
 var showQuestion = function () {
   startScreen.style.display = 'none';
@@ -50,7 +52,9 @@ var showHighscores = function () {
   highscoreScreen.style.display = 'block';
 };
 
+// CHECK ANSWER FUNCTION
 
+// CHANGING QUESTION FUNCTION
 var eliminateQuestion = function () {
   questions.shift(); 
 }
@@ -66,12 +70,29 @@ var renderQuestion = function () {
   document.querySelector('.answer-button4').innerHTML = `${questions[0].possible[3]}`;
 };
 
+// Checking if the innerHTMl matches the events text
+var checkAnswer = function (event) {
+  console.log(event.target.innerHTML);
+  console.log(questions[0].correct);
+  if ((questions[0].correct) == (event.target.innerHTML)) {
+    score++;
+    console.log('score: ' + score);
+    eliminateQuestion();
+    renderQuestion();
+    console.log('Correct Answer!')
+  } else {
+    console.log('Not correct answer!');
+    eliminateQuestion();
+    renderQuestion();
+  }};
+
 // STORING INFORMATION IN LOCAL STORAGE
 var finalScore = {
   initials: '',
-
+  score: '',
 }
 
+// ADDING TO FINAL SCORE
 var addFinalScore = function () {
   event.preventDefault();
 }
@@ -181,49 +202,18 @@ var questions = [
 ];
 
 // BUTTON FUNCTIONALITY
-startButton.addEventListener('click', renderQuestion);
+// Start button
+startButton.addEventListener('click', function () {
+  console.log('111');
+  showQuestion();
+  renderQuestion();
+});
 // initialsSubmitButton.addEventListener('click', addFinalScore);
-// goBackButton.addEventListener('click', );
+goBackButton.addEventListener('click', showStart);
 // clearHighscoresButton.addEventListener('click', );
 
 
-
-// var checkAnswer = function () {
-//   event.preventDefault();
-//   if ((questions[i].correct) === ) {
-
-//   }
-
-
-// BUTTON CLASS FOR CHECKING CORRECT ANSWERS
-
-// var whatAnswer = function(event) {
-//   var answer = possible[]
-// }
-
-
-// LOOP FOR QUESTION LOADING
-// for (var i = 0; i < 10; i++) {
-//   // Logic for producing correct values
-// console.log(questions[i].possible[0]);
-// console.log(questions[i].correct);
-// }
-
-// Checking if the innerHTMl matches the events text
-var checkAnswer = function (event) {
-  console.log(event.target.innerHTML);
-  console.log(questions[0].correct);
-  if ((questions[0].correct) == (event.target.innerHTML)) {
-    console.log('Woot')
-    score++;
-    console.log('score: ' + score);
-    eliminateQuestion();
-    renderQuestion();
-  } else {
-    console.log('Not correct answer');
-  }};
-
-
+// ANSWER BUTTONS
 document.querySelector('.answer-button1').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button2').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
