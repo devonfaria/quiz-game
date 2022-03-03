@@ -10,7 +10,7 @@ var answerButton3 = document.querySelector('.answer-button3');
 var answerButton4 = document.querySelector('.answer-button4');
 var timeEl = document.querySelector('.timer');
 var headerLink = document.querySelector('.header-scores');
-
+var questionSpace = document.querySelector('.question-show').innerHTML;
 var initialsSubmitButton = document.querySelector('.initials-submit-button');
 var goBackButton = document.querySelector('.go-back-button');
 var clearHighscoresButton = document.querySelector('.clear-highscores-button');
@@ -22,12 +22,10 @@ var correct = 0;
 var score = 0;
 var count = 0;
 var secondsLeft = 60;
-var questionSpace = document.querySelector('.question-show').innerHTML;
 var finalScore = {
   initials: '',
   score: score,
 }
-var questionSpace = document.querySelector('.question-show').innerHTML;
 
 // INITIATE FUNCTION
 var init = function () {
@@ -36,7 +34,6 @@ var init = function () {
   score = 0;
   count = 0;
   secondsLeft = 60;
-  
   finalScore = {
     initials: '',
     score: score,}
@@ -190,7 +187,7 @@ var renderQuestion = function () {
   document.querySelector('.answer-button4').innerHTML = `${questions[0].possible[3]}`;
 };
 
-// Checking if the innerHTMl matches the events text
+// Checking if the innerHTMl matches the event target's text
 var checkAnswer = function (event) {
   count++;
   if (count === 10) {
@@ -215,17 +212,13 @@ var eliminateQuestion = function () {
 
 // TIMER FUNCTION
 function setTime() {
-  // Sets interval in variable
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left";
     if(secondsLeft <= 0) {
-      // Stops execution of action at set interval
       clearInterval(timerInterval);
-      // Calls function to create and append image
       showEnd();
     }
-
   }, 1000);
 };
 
@@ -261,7 +254,6 @@ var clearStorage = function () {
 }
 
 // BUTTON FUNCTIONALITY
-// Start button
 startButton.addEventListener('click', function () {
   showQuestion();
   renderQuestion();
@@ -280,4 +272,5 @@ document.querySelector('.answer-button2').addEventListener('click', checkAnswer)
 document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button4').addEventListener('click', checkAnswer);
 
+// INITAITE STARTING CONDITIONS
 init();
