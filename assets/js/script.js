@@ -99,15 +99,12 @@ var eliminateQuestion = function () {
 
 // STORING INFORMATION IN LOCAL STORAGE
 var storesScore = function () {
-  finalScore.initials = initialsInput;
+  finalScore.initials = initialsInput.value;
   finalScore.score = score;
   console.log(finalScore);
   window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
   showHighscores();
 };
-
-// ADDING TO FINAL SCORE
-
 
 // QUESTION INFO
 var questions = [
@@ -216,7 +213,6 @@ var questions = [
 // BUTTON FUNCTIONALITY
 // Start button
 startButton.addEventListener('click', function () {
-  console.log('111');
   showQuestion();
   renderQuestion();
 });
