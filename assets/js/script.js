@@ -4,7 +4,11 @@ var questionScreen = document.querySelector('.question-screen');
 var endScreen = document.querySelector('.end-screen');
 var highscoreScreen = document.querySelector('.highscore-screen');
 var startButton = document.querySelector('.start-button');
-var answerButton = document.querySelectorAll('.answer-button');
+var answerButton1 = document.querySelector('.answer-button1');
+var answerButton2 = document.querySelector('.answer-button2');
+var answerButton3 = document.querySelector('.answer-button3');
+var answerButton4 = document.querySelector('.answer-button4');
+
 var initialsSubmitButton = document.querySelector('.initials-submit-button');
 var goBackButton = document.querySelector('.go-back-button');
 var clearHighscoresButton = document.querySelector('.clear-highscores-button');
@@ -13,6 +17,7 @@ var initialsInput = document.querySelector('.initials-input');
 // STARTING CONDITIONS
 var cursor = 0;
 var correct = 0;
+var score = 0;
 var questionSpace = document.querySelector('.question-show').innerHTML;
 
 // DEFINING SCREEN CHANGE FUNCTIONS
@@ -45,22 +50,21 @@ var showHighscores = function () {
   highscoreScreen.style.display = 'block';
 };
 
+
+var eliminateQuestion = function () {
+  questions.shift(); 
+}
+
 // DEFINING GAME FUNCTIONS
 // Rendering next question
 var renderQuestion = function () {
   document.querySelector('.question-show').innerHTML = `${questions[0].text}`;
   // for (var i = 0; i < 4; i++) {
-  document.querySelector('.answer1').innerHTML = `${questions[0].possible[0]}`;
-  document.querySelector('.answer2').innerHTML = `${questions[0].possible[1]}`;
-  document.querySelector('.answer3').innerHTML = `${questions[0].possible[2]}`;
-  document.querySelector('.answer4').innerHTML = `${questions[0].possible[3]}`;
-  questions.shift(); 
+  document.querySelector('.answer-button1').innerHTML = `${questions[0].possible[0]}`;
+  document.querySelector('.answer-button2').innerHTML = `${questions[0].possible[1]}`;
+  document.querySelector('.answer-button3').innerHTML = `${questions[0].possible[2]}`;
+  document.querySelector('.answer-button4').innerHTML = `${questions[0].possible[3]}`;
 };
-
-var checkAnswer = function () {
-  event.preventDefault();
-
-}
 
 // STORING INFORMATION IN LOCAL STORAGE
 var finalScore = {
@@ -82,7 +86,7 @@ var questions = [
       ".concat",
       ".end",
     ],
-    correct: 0
+    correct: '.push',
   },
   {
     text: "What language is predominantly used to style and animate elements of a webpage?",
@@ -92,7 +96,7 @@ var questions = [
       "Ruby",
       "CSS",
     ],
-    correct: 3
+    correct: "CSS",
   },
   {
     text: "What is considered the most widely used browser for coding debugging?",
@@ -102,7 +106,7 @@ var questions = [
       "Microsoft Edge",
       "Google Chrome",
     ],
-    correct: 3
+    correct: "Google Chrome",
   },
   {
     text: "What is the terminal command for adding a directory?",
@@ -112,7 +116,7 @@ var questions = [
       "mkdir",
       "git pull upstream main",
     ],
-    correct: 2
+    correct: "mkdir",
   },
   {
     text: "What is a commonly used database of reactive CSS designs and stylings?",
@@ -122,7 +126,7 @@ var questions = [
       "Google Designs",
       "Fullstack Slack",
     ],
-    correct: 1
+    correct: "Bootstrap",
   },
   {
     text: "What is the common name reference for Modern Javascript?",
@@ -132,7 +136,7 @@ var questions = [
       "ES2015",
       "Java",
     ],
-    correct: 0
+    correct: "ES6",
   },
   {
     text: "What is the main difference between arrays and objects?",
@@ -142,7 +146,7 @@ var questions = [
       "Arrays take in values alone, as where objects can take in arguments and values",
       "Arrays are limited in size, as where objects are unlimited",
     ],
-    correct: 2
+    correct: "Arrays take in values alone, as where objects can take in arguments and values",
   },
   {
     text: "What are the usual details needed to run a loop function?",
@@ -152,7 +156,7 @@ var questions = [
       "declared variable, incrementer, position, key",
       "event, declared variable, value",
     ],
-    correct: 0
+    correct: "declared variable, condition, incrementer",
   },
   {
     text: "What is a commonly used method for running a function over a set of variables?",
@@ -162,7 +166,7 @@ var questions = [
       "Loop function",
       "Concat Function",
     ],
-    correct: 2
+    correct: "Loop function",
   },
   {
     text: "When you submit a directory to GitHub, what three terminal calls do you use?",
@@ -172,16 +176,16 @@ var questions = [
       "cd, mkdir, git push",
       'git add -A, git commit -m "message", git push',
     ],
-    correct: 3
+    correct: 'git add -A, git commit -m "message", git push',
   }
 ];
 
 // BUTTON FUNCTIONALITY
-// startButton.addEventListener('click', showQuestion);
-// answerButton.addEventListener('click', renderQuestion);
+startButton.addEventListener('click', renderQuestion);
 // initialsSubmitButton.addEventListener('click', addFinalScore);
 // goBackButton.addEventListener('click', );
 // clearHighscoresButton.addEventListener('click', );
+
 
 
 // var checkAnswer = function () {
@@ -199,14 +203,31 @@ var questions = [
 
 
 // LOOP FOR QUESTION LOADING
-for (var i = 0; i < 10; i++) {
-  // Logic for producing correct values
-console.log(questions[i].possible[0]);
-console.log(questions[i].correct);
-}
+// for (var i = 0; i < 10; i++) {
+//   // Logic for producing correct values
+// console.log(questions[i].possible[0]);
+// console.log(questions[i].correct);
+// }
 
-document.querySelector('.answer4').addEventListener('click', renderQuestion);
+// Checking if the innerHTMl matches the events text
+var checkAnswer = function (event) {
+  console.log(event.target.innerHTML);
+  console.log(questions[0].correct);
+  if ((questions[0].correct) == (event.target.innerHTML)) {
+    console.log('Woot')
+    score++;
+    console.log('score: ' + score);
+    eliminateQuestion();
+    renderQuestion();
+  } else {
+    console.log('Not correct answer');
+  }};
 
+
+document.querySelector('.answer-button1').addEventListener('click', checkAnswer);
+document.querySelector('.answer-button2').addEventListener('click', checkAnswer);
+document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
+document.querySelector('.answer-button4').addEventListener('click', checkAnswer);
 
 
 
