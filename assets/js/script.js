@@ -8,6 +8,7 @@ var answerButton1 = document.querySelector('.answer-button1');
 var answerButton2 = document.querySelector('.answer-button2');
 var answerButton3 = document.querySelector('.answer-button3');
 var answerButton4 = document.querySelector('.answer-button4');
+var timeEl = document.querySelector('.timer');
 
 var initialsSubmitButton = document.querySelector('.initials-submit-button');
 var goBackButton = document.querySelector('.go-back-button');
@@ -19,6 +20,7 @@ var cursor = 0;
 var correct = 0;
 var score = 0;
 var count = 0;
+var secondsLeft = 60;
 var questionSpace = document.querySelector('.question-show').innerHTML;
 var finalScore = {
   initials: '',
@@ -83,10 +85,8 @@ var checkAnswer = function (event) {
     console.log('score: ' + score);
     eliminateQuestion();
     renderQuestion();
-    console.log('Correct Answer!', )
-    
   } else {
-    console.log('Not correct answer!');
+    secondsLeft = (secondsLeft - 10);
     eliminateQuestion();
     renderQuestion();
   }
@@ -97,15 +97,40 @@ var eliminateQuestion = function () {
     questions.shift(); 
 };
 
+// TIMER FUNCTION
+function setTime() {
+  // Sets interval in variable
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left";
+    if(secondsLeft === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function to create and append image
+      showEnd();
+    }
+
+  }, 1000);
+};
+
 // STORING INFORMATION IN LOCAL STORAGE
 var storesScore = function () {
   finalScore.initials = initialsInput.value;
   finalScore.score = score;
   console.log(finalScore);
   window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
+  showScore();
   showHighscores();
 };
 
+// RETRIEVING INFORMATION IN LOCAL STORAGE
+var showScore = function () {
+  var pullScore = JSON.parse(localStorage.getItem("finalScore"));
+  document.querySelector('.highscore-list').appendChild('li');
+  document.li.innerHTML = `${finalScore.initials}: score ${finalScore.score}`;
+  // document.querySelector('.highscoreLog').innerHTML = `${finalScore.initials}: score ${finalScore.score}`;
+};
+// showScore();
 // QUESTION INFO
 var questions = [
   {
@@ -226,3 +251,5 @@ document.querySelector('.answer-button1').addEventListener('click', checkAnswer)
 document.querySelector('.answer-button2').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button4').addEventListener('click', checkAnswer);
+
+setTime();
