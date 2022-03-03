@@ -20,6 +20,10 @@ var correct = 0;
 var score = 0;
 var count = 0;
 var questionSpace = document.querySelector('.question-show').innerHTML;
+var finalScore = {
+  initials: '',
+  score: score,
+}
 
 
 // DEFINING SCREEN CHANGE FUNCTIONS
@@ -30,7 +34,7 @@ var showStart = function () {
   endScreen.style.display = 'none';
   highscoreScreen.style.display = 'none';
 };
-showStart();
+// showStart();
 // Show question screen
 var showQuestion = function () {
   startScreen.style.display = 'none';
@@ -53,12 +57,6 @@ var showHighscores = function () {
   highscoreScreen.style.display = 'block';
 };
 
-// CHECK ANSWER FUNCTION
-
-// CHANGING QUESTION FUNCTION
-var eliminateQuestion = function () {
-  questions.shift(); 
-}
 
 // DEFINING GAME FUNCTIONS
 // Rendering next question
@@ -78,6 +76,7 @@ var checkAnswer = function (event) {
   if (count === 10) {
     showEnd();
     document.querySelector('.final-score').innerHTML = `Your final score is ${score}.`;
+    return;
   };
   if ((questions[0].correct) == (event.target.innerHTML)) {
     score++;
@@ -90,18 +89,25 @@ var checkAnswer = function (event) {
     console.log('Not correct answer!');
     eliminateQuestion();
     renderQuestion();
-  }};
+  }
+};
+
+// Changes question
+var eliminateQuestion = function () {
+    questions.shift(); 
+};
 
 // STORING INFORMATION IN LOCAL STORAGE
-var finalScore = {
-  initials: '',
-  score: '',
-}
+var storesScore = function () {
+  finalScore.initials = initialsInput;
+  finalScore.score = score;
+  console.log(finalScore);
+  window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
+  showHighscores();
+};
 
 // ADDING TO FINAL SCORE
-var addFinalScore = function () {
-  localStorage.setItem("finalScore", JSON.stringify());
-}
+
 
 // QUESTION INFO
 var questions = [
@@ -214,18 +220,13 @@ startButton.addEventListener('click', function () {
   showQuestion();
   renderQuestion();
 });
-// initialsSubmitButton.addEventListener('click', addFinalScore);
+
+initialsSubmitButton.addEventListener('click', storesScore);
 goBackButton.addEventListener('click', showStart);
 // clearHighscoresButton.addEventListener('click', );
-
 
 // ANSWER BUTTONS
 document.querySelector('.answer-button1').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button2').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button3').addEventListener('click', checkAnswer);
 document.querySelector('.answer-button4').addEventListener('click', checkAnswer);
-
-
-
-
-var answer
