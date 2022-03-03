@@ -9,13 +9,21 @@ header {
 }
 
 .header-scores {
-  padding: 20px;
+  padding: 15px;
   background-color: purple;
   color: white;
+  border-radius: 10px;
+  margin-left: 32px;
+}
+
+h1 {
+  font-size: 50px;
 }
 
 button {
-  padding: 5px;
+  width: fit-content;
+  margin: 10px;
+  padding: 10px;
   background-color: purple;
   color: white;
   font-size: 20px;
@@ -30,18 +38,30 @@ main div {
 .timer {
   padding: 20px;
   color: purple;
+  margin-right: 40px;
 }
 
 .question-screen {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  margin: 0 25%;
 }
 
 .question-screen button{
-  display: block;
-  width: fit-content;
+  justify-content: center;
+  display:block;
 }
 
 .question-show {
+  font-size: 25px;
+}
+
+p {
+  font-size: 20px;;
+}
+
+.initials-input {
+  height: 40px;
   font-size: 25px;
 }

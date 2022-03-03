@@ -239,12 +239,14 @@ var storesScore = function () {
 
 // RETRIEVING INFORMATION IN LOCAL STORAGE
 var showScore = function () {
-  var pullScore = JSON.parse(localStorage.getItem("finalScore"));
-  console.log(score, finalScore.score);
+  JSON.parse(localStorage.getItem("finalScore"));
+  var lastScore = finalScore.score
+  console.log(score, finalScore.score, lastScore);
   if (score > finalScore.score) {
     finalScore.initials = initialsInput.value;
     finalScore.score = score;
     window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
+    // document.querySelector('.highscore-list').createElement('li');
     document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore.initials}; highscore ${finalScore.score}`;
     showHighscores();
   } else {
