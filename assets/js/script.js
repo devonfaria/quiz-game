@@ -247,7 +247,7 @@ var showScore = function () {
     finalScore.score = score;
     window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
     // document.querySelector('.highscore-list').createElement('li');
-    document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore.initials}; highscore ${finalScore.score}`;
+    document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore.initials};   Highscore ${finalScore.score}`;
     showHighscores();
   } else {
     showHighscores();
