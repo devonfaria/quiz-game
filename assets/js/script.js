@@ -77,11 +77,8 @@ var checkAnswer = function (event) {
   console.log(count);
   if (count === 10) {
     showEnd();
-    var finalScore = {
-      highscore: score;
-      
-    }
-  }
+    document.querySelector('.final-score').innerHTML = `Your final score is ${score}.`;
+  };
   if ((questions[0].correct) == (event.target.innerHTML)) {
     score++;
     console.log('score: ' + score);
