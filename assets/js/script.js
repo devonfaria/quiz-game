@@ -128,7 +128,6 @@ var storesScore = function () {
 // RETRIEVING INFORMATION IN LOCAL STORAGE
 var showScore = function () {
   var pullScore = JSON.parse(localStorage.getItem("finalScore"));
-  document.querySelector('.highscore-list').appendChild('li');
   document.li.innerHTML = `${finalScore.initials}: score ${finalScore.score}`;
 };
 
@@ -244,7 +243,9 @@ startButton.addEventListener('click', function () {
   renderQuestion();
   setTime();
 });
-initialsSubmitButton.addEventListener('click', storesScore);
+initialsSubmitButton.addEventListener('click', function () {
+  storesScore();
+});
 goBackButton.addEventListener('click', showStart);
 headerLink.addEventListener('click', showHighscores);
 
