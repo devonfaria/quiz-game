@@ -271,16 +271,6 @@ var storesScore = function () {
   showHighscores();
 };
 
-// RETRIEVING INFORMATION IN LOCAL STORAGE
-// var showScore = function () {
-//   test();
-//   JSON.parse(localStorage.getItem("finalScore"));
-//   var lastScore = finalScore[0].score
-//   console.log(score, finalScore[0].score, lastScore);
-//   document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore[0].initials};   Highscore ${finalScore[0].score}`;
-//     showHighscores();
-// }
-
 // CLEARING LOCAL STORAGE
 var clearStorage = function () {
   window.localStorage.clear();
