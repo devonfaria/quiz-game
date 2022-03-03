@@ -15,6 +15,7 @@ var initialsSubmitButton = document.querySelector('.initials-submit-button');
 var goBackButton = document.querySelector('.go-back-button');
 var clearHighscoresButton = document.querySelector('.clear-highscores-button');
 var initialsInput = document.querySelector('.initials-input');
+var scoreList = document.getElementById('highscore-list');
 
 // STARTING CONDITIONS
 var questions = [];
@@ -22,6 +23,12 @@ var correct = 0;
 var score = 0;
 var count = 0;
 var secondsLeft = 60;
+var storedHighscores = [
+  {
+    initials: 'DF',
+    score: 9,
+  }
+];
 var finalScore = {
   initials: '',
   score: score,
@@ -36,7 +43,8 @@ var init = function () {
   secondsLeft = 60;
   finalScore = {
     initials: '',
-    score: score,}
+    score: 0}
+  initialsInput.value = '';
   questions = [
       {
         text: "What is the method that adds values to the end of an array?",
@@ -222,30 +230,56 @@ function setTime() {
   }, 1000);
 };
 
+var test = function () {
+  var data = JSON.parse(localStorage.getItem("storedHighscores"));
+  var previousHighscore;
+  if (data) {
+    previousHighscore = data.sort(function (a, b) {
+      return b.score - a.score;
+    });
+  } else {
+    previousHighscore = [];
+  }
+  console.log(previousHighscore);
+  scoreList.innerHTML = '';
+  for (var i = 0; i < previousHighscore.length; i++) {
+    var createLi = document.createElement('li');
+    createLi.textContent = `User: ${previousHighscore[i].initials}; Score:${previousHighscore[i].score}`;
+    scoreList.appendChild(createLi);
+  }
+};
+
 // STORING INFORMATION IN LOCAL STORAGE
 var storesScore = function () {
   finalScore.initials = initialsInput.value;
   finalScore.score = score;
-  window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
+  console.log(finalScore);
+  var data = JSON.parse(localStorage.getItem("storedHighscores"));
+  var previousHighscore;
+  if (data) {
+    previousHighscore = data.sort(function (a, b) {
+      return b.score - a.score;
+    });
+  } else {
+    previousHighscore = [];
+  }
+  // document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore.initials};   Highscore ${finalScore.score}`;
+  previousHighscore.push(finalScore)
+  console.log(previousHighscore);
+  localStorage.setItem("storedHighscores", JSON.stringify(previousHighscore));
+  test();
   showHighscores();
 };
 
 // RETRIEVING INFORMATION IN LOCAL STORAGE
-var showScore = function () {
-  JSON.parse(localStorage.getItem("finalScore"));
-  var lastScore = finalScore.score
-  console.log(score, finalScore.score, lastScore);
-  if (score > finalScore.score) {
-    finalScore.initials = initialsInput.value;
-    finalScore.score = score;
-    window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
-    // document.querySelector('.highscore-list').createElement('li');
-    document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore.initials};   Highscore ${finalScore.score}`;
-    showHighscores();
-  } else {
-    showHighscores();
-  }
-}
+// var showScore = function () {
+//   test();
+//   JSON.parse(localStorage.getItem("finalScore"));
+//   var lastScore = finalScore[0].score
+//   console.log(score, finalScore[0].score, lastScore);
+//   document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore[0].initials};   Highscore ${finalScore[0].score}`;
+//     showHighscores();
+// }
 
 // CLEARING LOCAL STORAGE
 var clearStorage = function () {
@@ -260,7 +294,8 @@ startButton.addEventListener('click', function () {
   setTime();
 });
 initialsSubmitButton.addEventListener('click', function () {
-  showScore();
+  console.log('Working');
+  storesScore();
 });
 goBackButton.addEventListener('click', init);
 headerLink.addEventListener('click', showHighscores);
