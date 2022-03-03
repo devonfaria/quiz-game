@@ -77,14 +77,12 @@ var renderQuestion = function () {
 // Checking if the innerHTMl matches the events text
 var checkAnswer = function (event) {
   count++;
-  console.log(count);
   if (count === 10) {
     showEnd();
     return;
   };
   if ((questions[0].correct) == (event.target.innerHTML)) {
     score++;
-    console.log('score: ' + score);
     eliminateQuestion();
     renderQuestion();
   } else {
@@ -119,17 +117,23 @@ function setTime() {
 var storesScore = function () {
   finalScore.initials = initialsInput.value;
   finalScore.score = score;
-  console.log(finalScore);
   window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
-  showScore();
   showHighscores();
 };
 
 // RETRIEVING INFORMATION IN LOCAL STORAGE
 var showScore = function () {
   var pullScore = JSON.parse(localStorage.getItem("finalScore"));
-  document.li.innerHTML = `${finalScore.initials}: score ${finalScore.score}`;
-};
+  if (score >= finalScore.score) {
+    finalScore.initials = initialsInput.value;
+    finalScore.score = score;
+    window.localStorage.setItem("finalScore", JSON.stringify(finalScore));
+    document.querySelector('.highscoreLog').innerHTML = `User: ${finalScore.initials}; highscore ${finalScore.score}`;
+    showHighscores();
+  } else {
+    showHighscores();
+  }
+}
 
 
 // QUESTION INFO
@@ -244,7 +248,7 @@ startButton.addEventListener('click', function () {
   setTime();
 });
 initialsSubmitButton.addEventListener('click', function () {
-  storesScore();
+  showScore();
 });
 goBackButton.addEventListener('click', showStart);
 headerLink.addEventListener('click', showHighscores);
