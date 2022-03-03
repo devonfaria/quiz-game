@@ -18,6 +18,7 @@ var initialsInput = document.querySelector('.initials-input');
 var cursor = 0;
 var correct = 0;
 var score = 0;
+var count = 0;
 var questionSpace = document.querySelector('.question-show').innerHTML;
 
 
@@ -72,14 +73,22 @@ var renderQuestion = function () {
 
 // Checking if the innerHTMl matches the events text
 var checkAnswer = function (event) {
-  console.log(event.target.innerHTML);
-  console.log(questions[0].correct);
+  count++;
+  console.log(count);
+  if (count === 10) {
+    showEnd();
+    var finalScore = {
+      highscore: score;
+      
+    }
+  }
   if ((questions[0].correct) == (event.target.innerHTML)) {
     score++;
     console.log('score: ' + score);
     eliminateQuestion();
     renderQuestion();
-    console.log('Correct Answer!')
+    console.log('Correct Answer!', )
+    
   } else {
     console.log('Not correct answer!');
     eliminateQuestion();
@@ -94,7 +103,7 @@ var finalScore = {
 
 // ADDING TO FINAL SCORE
 var addFinalScore = function () {
-  event.preventDefault();
+  localStorage.setItem("finalScore", JSON.stringify());
 }
 
 // QUESTION INFO
